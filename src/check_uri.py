@@ -30,11 +30,13 @@ class URI:
         self.DOMAIN=""                                     # Domain Name
         self.GET_URI_INFO()
 
+    # Check if the the provided URI is valid
     def VALIDATE_URL(self):
         if not validators.url(self.URI):
             print(f"{RED}[-] The Given URI Is Invalid!{NONE}")
             sys.exit(-1)
-
+    
+    # Get Information About The Provided URI
     def GET_URI_INFO(self):
         PARSER=urlparse(self.URI)
         self.PROTOCOL=PARSER.scheme                        # Fetch Protocol
@@ -45,9 +47,8 @@ class URI:
         self.DOMAIN=self.DOMAIN[:-1]                       # Get Domain Name from URI
         self.URL=self.PROTOCOL+"://"+self.DOMAIN           # Get URL From URI
         self.DOMAIN_IP=socket.gethostbyname(self.DOMAIN)   # Getting IP Associated With Domain Name
-        
+    
+    # Print Domain Information
     def SHOW_DOMAIN_INFO(self):
         table=[["URI",self.URI],["URL",self.URL],['PROTOCOL',self.PROTOCOL],["DOMAIN",self.DOMAIN],["DOMAIN IP",self.DOMAIN_IP]]
         print(f'{YELLOW}[+] URI Info: \n{CYAN}{tabulate(table, tablefmt="pretty")}{NONE}\n')
-
-    

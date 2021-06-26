@@ -35,7 +35,7 @@ class VIRUS_TOTAL:
         self.DOMAIN= URI.DOMAIN                             
         self.ID=self.FETCH_URL_ID()    
         self.ATTRIBUTES=self.ANALYSE_URL()
-        print(f"{BLUE}{BOLD}[+] Virus Total ID(URL): {self.ID}{NONE} ")                    
+        print(f"{YELLOW}{BOLD}[+] Virus Total ID(URL): {PURPLE}{self.ID}{NONE} \n")                    
         
     # Fetch URL ID From VirusTotal
     def FETCH_URL_ID(self):
@@ -50,6 +50,7 @@ class VIRUS_TOTAL:
         self.ID=resp_json['data']['id']
         return self.ID
     
+    # Analyse The Target URL
     def ANALYSE_URL(self):
         header={
         'X-ApiKey':self.API_KEY,
@@ -62,7 +63,8 @@ class VIRUS_TOTAL:
                 break
             sleep(1)
         return results['attributes']
-        
+    
+    # Print Overall Stats   
     def PRINT_STATS(self):
         STATS=self.ATTRIBUTES['stats']
         table=[]
@@ -70,7 +72,14 @@ class VIRUS_TOTAL:
             table.append([key,str(STATS[key])])
         print(f'{YELLOW}[+] Stats For Your URL: \n{CYAN}{tabulate(table, headers=["Status","Score"],tablefmt="pretty")}{NONE}\n')
         
-        
+    def PRINT_VENDOR_STATS(self):
+        RESULTS=self.ATTRIBUTES['results']
+        table=[]
+        for KEY in RESULTS.keys():
+            VENDOR=RESULTS[KEY]
+            table.append([VENDOR['engine_name'],VENDOR['category'],VENDOR['result'],VENDOR['method']])
+        print(f'{YELLOW}[+] Engine Analysis: \n{CYAN}{tabulate(table, headers=["Engine","Category","Result","Method"],tablefmt="pretty")}{NONE}\n')
+            
         
             
 

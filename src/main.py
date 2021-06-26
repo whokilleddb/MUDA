@@ -21,6 +21,7 @@ def VIRUS_TOTAL_ANALYSIS(uri):
     vt = VIRUS_TOTAL(uri)
     vt.ANALYSE_URL()
     vt.PRINT_STATS()
+    vt.PRINT_VENDOR_STATS()
 
 def main():
     print(f"{GREEN}{BOLD}[+] Launching MUDA!")    
