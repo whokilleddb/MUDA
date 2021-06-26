@@ -17,8 +17,10 @@ BOLD='\033[1m'
 BLINK='\033[5m'
 UNDERLINE='\033[4m'
 
-def VIRUS_TOTAL_ANALYSIS(url):
-    vt = VIRUS_TOTAL(url)
+def VIRUS_TOTAL_ANALYSIS(uri):
+    vt = VIRUS_TOTAL(uri)
+    vt.ANALYSE_URL()
+    vt.PRINT_STATS()
 
 def main():
     print(f"{GREEN}{BOLD}[+] Launching MUDA!")    

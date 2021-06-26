@@ -6,6 +6,8 @@ from dotenv import load_dotenv
 import tldextract
 from urllib.parse import urlparse
 from tabulate import tabulate
+from time import sleep
+import datetime
 
 load_dotenv()
 VIRUS_TOTAL_API_URL = "https://www.virustotal.com/api/v3/"
@@ -32,6 +34,7 @@ class VIRUS_TOTAL:
         self.PROTOCOL= URI.DOMAIN_IP                                
         self.DOMAIN= URI.DOMAIN                             
         self.ID=self.FETCH_URL_ID()    
+        self.ATTRIBUTES=self.ANALYSE_URL()
         print(f"{BLUE}{BOLD}[+] Virus Total ID(URL): {self.ID}{NONE} ")                    
         
     # Fetch URL ID From VirusTotal
@@ -51,6 +54,23 @@ class VIRUS_TOTAL:
         header={
         'X-ApiKey':self.API_KEY,
         }
-        url=VIRUS_TOTAL_API_URL+str(self.ID)
-        response=requests.get(url,headers=header)
-        print(response.text)
+        url=VIRUS_TOTAL_API_URL+"analyses/"+str(self.ID)
+        while True:
+            response=requests.get(url,headers=header)   
+            results=(response.json())['data']
+            if results['attributes']['status'] != "queued" :
+                break
+            sleep(1)
+        return results['attributes']
+        
+    def PRINT_STATS(self):
+        STATS=self.ATTRIBUTES['stats']
+        table=[]
+        for key in STATS.keys():
+            table.append([key,str(STATS[key])])
+        print(f'{YELLOW}[+] Stats For Your URL: \n{CYAN}{tabulate(table, headers=["Status","Score"],tablefmt="pretty")}{NONE}\n')
+        
+        
+        
+            
+
