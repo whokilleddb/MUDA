@@ -25,31 +25,14 @@ UNDERLINE='\033[4m'
 
 class VIRUS_TOTAL:
     def __init__(self, URI ):
-        self.API_KEY=os.getenv('VIRUS_TOTAL_KEY')          # Store API KEY
-        self.URI= URI                                      # URI to Examine
-        self.URL=""
-        self.DOMAIN_IP=""                                  # IP Of The Domain
-        self.PROTOCOL=""                                   # Being Protocol Used
-        self.DOMAIN=""
-        self.GET_URI_INFO()                                # Fill In Various Details
-        self.ID=self.FETCH_URL_ID()                        # Virus Total IP
-        
-    # Fill In Various Parameters Of The Class Object
-    def GET_URI_INFO(self):
-        PARSER=urlparse(self.URI)
-        self.PROTOCOL=PARSER.scheme                        # Fetch Protocol
-        EXTRACTOR=tldextract.extract(self.URI)
-        for ext in EXTRACTOR:
-            if ext !='':
-                self.DOMAIN=self.DOMAIN+ext+'.'
-        self.DOMAIN=self.DOMAIN[:-1]                       # Get Domain Name from URI
-        self.URL=self.PROTOCOL+"://"+self.DOMAIN           # Get URL From URI
-        self.DOMAIN_IP=socket.gethostbyname(self.DOMAIN)   # Getting IP Associated With Domain Name
-        
-    # Show Domain Info
-    def SHOW_DOMAIN_INFO(self):
-        table=[["URI",self.URI],["URL",self.URL],['PROTOCOL',self.PROTOCOL],["DOMAIN",self.DOMAIN],["DOMAIN IP",self.DOMAIN_IP],["URL ID",self.ID]]
-        print(f'{YELLOW}[+] VIRUS TOTAL INFO: \n{CYAN}{tabulate(table, tablefmt="pretty")}{NONE}\n')
+        self.API_KEY=os.getenv('VIRUS_TOTAL_KEY')           # Store API KEY
+        self.URI= URI.URI                                    
+        self.URL= URI.URL
+        self.DOMAIN_IP= URI.DOMAIN_IP                                  
+        self.PROTOCOL= URI.DOMAIN_IP                                
+        self.DOMAIN= URI.DOMAIN                             
+        self.ID=self.FETCH_URL_ID()    
+        print(f"{BLUE}{BOLD}[+] Virus Total ID(URL): {self.ID}{NONE} ")                    
         
     # Fetch URL ID From VirusTotal
     def FETCH_URL_ID(self):

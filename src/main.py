@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 from VirusTotal import *
 import argparse
-from modules import *
+from check_uri import *
 
 # Colorschemes
 NONE='\033[00m'
@@ -19,16 +19,16 @@ UNDERLINE='\033[4m'
 
 def VIRUS_TOTAL_ANALYSIS(url):
     vt = VIRUS_TOTAL(url)
-    vt.SHOW_DOMAIN_INFO()
 
 def main():
     print(f"{GREEN}{BOLD}[+] Launching MUDA!")    
     parser = argparse.ArgumentParser(description="[+] Malicious URL Detector!")
     parser.add_argument('-u', metavar='URL', required=True, type=str, help="URL/URI to Inspect")
     args = parser.parse_args()
-    VALIDATE_URL(args.u)
-    print(f"{WHITE}[+] Getting Virus Total Results{NONE}")
-    VIRUS_TOTAL_ANALYSIS(args.u)
+
+    uri=URI(args.u)
+    uri.SHOW_DOMAIN_INFO()
+    VIRUS_TOTAL_ANALYSIS(uri)
     
 if __name__=='__main__':
     main()
