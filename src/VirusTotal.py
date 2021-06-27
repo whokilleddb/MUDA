@@ -79,7 +79,3 @@ class VIRUS_TOTAL:
             VENDOR=RESULTS[KEY]
             table.append([VENDOR['engine_name'],VENDOR['category'],VENDOR['result'],VENDOR['method']])
         print(f'{YELLOW}[+] Engine Analysis: \n{CYAN}{tabulate(table, headers=["Engine","Category","Result","Method"],tablefmt="pretty")}{NONE}\n')
-            
-        
-            
-

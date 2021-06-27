@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
-from VirusTotal import *
 import argparse
+from VirusTotal import *
 from check_uri import *
+from whoisinfo import *
 
 # Colorschemes
 NONE='\033[00m'
@@ -23,6 +24,10 @@ def VIRUS_TOTAL_ANALYSIS(uri):
     vt.PRINT_STATS()
     vt.PRINT_VENDOR_STATS()
 
+def WHOIS_INFO(domain):
+    w=WHOIS(domain)
+    w.SHOW_WHOIS_INFO()
+
 def main():
     print(f"{GREEN}{BOLD}[+] Launching MUDA!")    
     parser = argparse.ArgumentParser(description="[+] Malicious URL Detector!")
@@ -32,6 +37,7 @@ def main():
     uri=URI(args.u)
     uri.SHOW_DOMAIN_INFO()
     VIRUS_TOTAL_ANALYSIS(uri)
+    WHOIS_INFO(uri.DOMAIN)
     
 if __name__=='__main__':
     main()
