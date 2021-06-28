@@ -26,7 +26,7 @@ def RETURN_BOOLEAN(str):
         return True
     return False
 
-def SHOW_TABLE(heading,table):
-    print(f'{YELLOW}{heading}: \n{CYAN}{tabulate(table, tablefmt="pretty")}{NONE}\n')
+def SHOW_TABLE(heading,table,header=[]):
+    print(f'{YELLOW}{heading}: \n{CYAN}{tabulate(table,headers=header, tablefmt="pretty")}{NONE}\n')
     
     

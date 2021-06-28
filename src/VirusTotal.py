@@ -80,5 +80,5 @@ class VIRUS_TOTAL:
         for KEY in RESULTS.keys():
             VENDOR=RESULTS[KEY]
             table.append([VENDOR['engine_name'],VENDOR['category'],VENDOR['result'],VENDOR['method']])
-        SHOW_TABLE("[+] Engine Analysis:",table)
+        SHOW_TABLE("[+] Engine Analysis:",table,['Engine','Category','Result','Method'])
         
