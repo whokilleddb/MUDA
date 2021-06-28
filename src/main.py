@@ -3,6 +3,7 @@ import argparse
 from VirusTotal import *
 from check_uri import *
 from whoisinfo import *
+from phishtank import *
 
 # Colorschemes
 NONE='\033[00m'
@@ -24,9 +25,13 @@ def VIRUS_TOTAL_ANALYSIS(uri):
     vt.PRINT_STATS()
     vt.PRINT_VENDOR_STATS()
 
-def WHOIS_INFO(domain):
+def WHOIS_ANALYSIS(domain):
     w=WHOIS(domain)
     w.SHOW_WHOIS_INFO()
+
+def PHISHTANK_ANALYSIS(url):
+    pt=PHISHTANK(url)
+    pt.SHOW_DATA()
 
 def main():
     print(f"{GREEN}{BOLD}[+] Launching MUDA!")    
@@ -37,7 +42,8 @@ def main():
     uri=URI(args.u)
     uri.SHOW_DOMAIN_INFO()
     VIRUS_TOTAL_ANALYSIS(uri)
-    WHOIS_INFO(uri.DOMAIN)
+    WHOIS_ANALYSIS(uri.DOMAIN)
+    PHISHTANK_ANALYSIS(uri.URL)
     
 if __name__=='__main__':
     main()
