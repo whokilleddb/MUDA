@@ -5,6 +5,7 @@ import tldextract
 from urllib.parse import urlparse
 import socket
 from tabulate import tabulate
+from modules import *
 
 # Colorschemes
 NONE='\033[00m'
@@ -51,4 +52,4 @@ class URI:
     # Print Domain Information
     def SHOW_DOMAIN_INFO(self):
         table=[["URI",self.URI],["URL",self.URL],['PROTOCOL',self.PROTOCOL],["DOMAIN",self.DOMAIN],["DOMAIN IP",self.DOMAIN_IP]]
-        print(f'{YELLOW}[+] URI Info: \n{CYAN}{tabulate(table, tablefmt="pretty")}{NONE}\n')
+        SHOW_TABLE("[+] URI Info",table)

@@ -8,6 +8,7 @@ from urllib.parse import urlparse
 from tabulate import tabulate
 from time import sleep
 import datetime
+from modules import *
 
 load_dotenv()
 VIRUS_TOTAL_API_URL = "https://www.virustotal.com/api/v3/"
@@ -70,7 +71,8 @@ class VIRUS_TOTAL:
         table=[]
         for key in STATS.keys():
             table.append([key,str(STATS[key])])
-        print(f'{YELLOW}[+] Stats For Your URL: \n{CYAN}{tabulate(table, headers=["Status","Score"],tablefmt="pretty")}{NONE}\n')
+        SHOW_TABLE("[+] Stats For Your URL:",table)
+
         
     def PRINT_VENDOR_STATS(self):
         RESULTS=self.ATTRIBUTES['results']
@@ -78,4 +80,5 @@ class VIRUS_TOTAL:
         for KEY in RESULTS.keys():
             VENDOR=RESULTS[KEY]
             table.append([VENDOR['engine_name'],VENDOR['category'],VENDOR['result'],VENDOR['method']])
-        print(f'{YELLOW}[+] Engine Analysis: \n{CYAN}{tabulate(table, headers=["Engine","Category","Result","Method"],tablefmt="pretty")}{NONE}\n')
+        SHOW_TABLE("[+] Engine Analysis:",table)
+        
