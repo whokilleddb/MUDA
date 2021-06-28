@@ -2,13 +2,13 @@
 import requests
 import os
 import socket
-from dotenv import load_dotenv
 import tldextract
 from urllib.parse import urlparse
 from tabulate import tabulate
 from time import sleep
 import datetime
 from modules import *
+from dotenv import load_dotenv
 
 load_dotenv()
 VIRUS_TOTAL_API_URL = "https://www.virustotal.com/api/v3/"

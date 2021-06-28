@@ -4,6 +4,7 @@ import sys
 import tldextract
 from urllib.parse import urlparse
 import socket
+import requests
 from tabulate import tabulate
 from modules import *
 
@@ -22,8 +23,9 @@ BLINK='\033[5m'
 UNDERLINE='\033[4m'
 
 class URI:
-    def __init__(self,URI):
+    def __init__(self,URI,REDIRECT):
         self.URI=URI
+        self.REDIRECT=REDIRECT
         self.VALIDATE_URL()
         self.URL=""
         self.DOMAIN_IP=""                                  # IP Associated With The Domain
@@ -39,6 +41,9 @@ class URI:
     
     # Get Information About The Provided URI
     def GET_URI_INFO(self):
+        r=requests.get(self.URI)
+        if r.history and self.REDIRECT:
+            self.URI=r.url
         PARSER=urlparse(self.URI)
         self.PROTOCOL=PARSER.scheme                        # Fetch Protocol
         EXTRACTOR=tldextract.extract(self.URI)

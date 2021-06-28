@@ -31,7 +31,7 @@ class PHISHTANK:
     
     def SHOW_DATA(self):
         if self.IN_DB:
-            table=[['In Database','True'],["Is Phish?",self.IS_PHISH],["Verified At",self.VERIFIED[1]],["Info Page",[self.DETAILS]]]
+            table=[['In Database','True'],["Is Phish?",self.IS_PHISH],["Verified At",self.VERIFIED[1]],["Info Page",self.DETAILS]]
             SHOW_TABLE("[+] PhishTank Info",table)
         else :
             print(f"{RED}[-] No Information Available{NONE}")

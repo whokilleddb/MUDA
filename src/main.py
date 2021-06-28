@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 import argparse
-from VirusTotal import *
+from virustotal import *
 from check_uri import *
 from whoisinfo import *
 from phishtank import *
+from sslcheck import *
 
 # Colorschemes
 NONE='\033[00m'
@@ -33,17 +34,22 @@ def PHISHTANK_ANALYSIS(url):
     pt=PHISHTANK(url)
     pt.SHOW_DATA()
 
+def GET_SSL_INFO(domain):
+    s=SSL_INSPECTION(domain)
+
 def main():
-    print(f"{GREEN}{BOLD}[+] Launching MUDA!")    
+    print(f"\n{PURPLE}{BOLD}[+] Launching MUDA!\n")    
     parser = argparse.ArgumentParser(description="[+] Malicious URL Detector!")
     parser.add_argument('-u', metavar='URL', required=True, type=str, help="URL/URI to Inspect")
+    parser.add_argument('-r', action='store_true', help="Follow Redirects")
     args = parser.parse_args()
-
-    uri=URI(args.u)
+    uri=URI(args.u,args.r)
     uri.SHOW_DOMAIN_INFO()
-    VIRUS_TOTAL_ANALYSIS(uri)
-    WHOIS_ANALYSIS(uri.DOMAIN)
-    PHISHTANK_ANALYSIS(uri.URL)
+    #VIRUS_TOTAL_ANALYSIS(uri)
+    #WHOIS_ANALYSIS(uri.DOMAIN)
+    #PHISHTANK_ANALYSIS(uri.URL)
+    GET_SSL_INFO(uri.DOMAIN)
     
 if __name__=='__main__':
+    SHOW_BANNER()
     main()
