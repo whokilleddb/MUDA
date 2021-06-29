@@ -15,6 +15,19 @@ BOLD='\033[1m'
 BLINK='\033[5m'
 UNDERLINE='\033[4m'
 
+# Banner Text
+BANNER="""
+██╗    ██╗██╗  ██╗ ██████╗ ██╗  ██╗██╗██╗     ██╗     ███████╗██████╗ ██████╗ ██████╗ 
+██║    ██║██║  ██║██╔═══██╗██║ ██╔╝██║██║     ██║     ██╔════╝██╔══██╗██╔══██╗██╔══██╗
+██║ █╗ ██║███████║██║   ██║█████╔╝ ██║██║     ██║     █████╗  ██║  ██║██║  ██║██████╔╝
+██║███╗██║██╔══██║██║   ██║██╔═██╗ ██║██║     ██║     ██╔══╝  ██║  ██║██║  ██║██╔══██╗
+╚███╔███╔╝██║  ██║╚██████╔╝██║  ██╗██║███████╗███████╗███████╗██████╔╝██████╔╝██████╔╝
+ ╚══╝╚══╝ ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝╚═╝╚══════╝╚══════╝╚══════╝╚═════╝ ╚═════╝ ╚═════╝ 
+"""
+
+def SHOW_BANNER():
+    print(f"{GREEN}{BANNER}{NONE}")
+
 def GET_TIME(obj):
     if type(obj)==type([]):
         return obj[0]
@@ -27,6 +40,11 @@ def RETURN_BOOLEAN(str):
     return False
 
 def SHOW_TABLE(heading,table,header=[]):
-    print(f'{YELLOW}{heading}: \n{CYAN}{tabulate(table,headers=header, tablefmt="pretty")}{NONE}\n')
+    if table :
+        print(f'{YELLOW}{heading}: \n{CYAN}{tabulate(table,headers=header, tablefmt="pretty")}{NONE}\n')
     
-    
+def CHECK_KEY(KEY,DICT):
+    if KEY in DICT.keys():
+        return True
+    else :
+        return False

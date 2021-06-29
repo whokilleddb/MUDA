@@ -16,5 +16,6 @@
   <li>virustotal.py - Defines a class <code>VIRUS_TOTAL</code> to store the results of <a href='https://www.virustotal.com/gui/'>Virus Total</a> Analysis</li>
   <li>whoisinfo.py - Defines a class <code>WHOIS</code> to store whois directory lookup</li>
   <li>phishtank.py - Defines a class <code>PHISHTANK</code> to store the results of <a href='http://phishtank.org/'>PhishTank</a> Analysis</li>
+  <li>sslcheck.py - Defines a class <code>SSL_INSPECTION</code> to contain information about the target website's SSL Certificate(when ever valid)</li>
 </ul>
   

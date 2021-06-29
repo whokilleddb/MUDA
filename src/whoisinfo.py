@@ -31,7 +31,7 @@ class WHOIS:
     def SHOW_WHOIS_INFO(self):
         #print(self.TIME)
         table=[["Domain",self.DOMAIN],["Creation Date",self.TIME['CREATION'].strftime("%H:%M:%S %Y-%m-%d")],["Updated Date",self.TIME['UPDATED'].strftime("%H:%M:%S %Y-%m-%d")],["Expiration Date",self.TIME['EXPIRATION'].strftime("%H:%M:%S %Y-%m-%d")]]
-        SHOW_TABLE("[+] WHOIS Info:",table)
+        SHOW_TABLE("[+] WHOIS Info",table)
         
         
     
