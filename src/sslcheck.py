@@ -52,3 +52,6 @@ class SSL_INSPECTION:
         print(f"{YELLOW}[+] OCSP: {CYAN}{self.CERT_DICT['OCSP'][0]}{NONE}\n")
         
         print(f"{YELLOW}[+] CA Issuers: {CYAN}{self.CERT_DICT['caIssuers'][0]}{NONE}\n")
+        
+        if CHECK_KEY('crlDistributionPoints',self.CERT_DICT): 
+            print(f"{YELLOW}[+] CRL Distribution Points: {CYAN}{','.join(self.CERT_DICT['crlDistributionPoints'])}{NONE}\n")

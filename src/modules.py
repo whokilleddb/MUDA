@@ -40,6 +40,11 @@ def RETURN_BOOLEAN(str):
     return False
 
 def SHOW_TABLE(heading,table,header=[]):
-    print(f'{YELLOW}{heading}: \n{CYAN}{tabulate(table,headers=header, tablefmt="pretty")}{NONE}\n')
+    if table :
+        print(f'{YELLOW}{heading}: \n{CYAN}{tabulate(table,headers=header, tablefmt="pretty")}{NONE}\n')
     
-    
+def CHECK_KEY(KEY,DICT):
+    if KEY in DICT.keys():
+        return True
+    else :
+        return False
