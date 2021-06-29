@@ -34,8 +34,10 @@ def PHISHTANK_ANALYSIS(url):
     pt=PHISHTANK(url)
     pt.SHOW_DATA()
 
-def GET_SSL_INFO(domain):
-    s=SSL_INSPECTION(domain)
+def GET_SSL_INFO(proto,domain):
+    if proto.lower()=='https':
+        s=SSL_INSPECTION(domain)
+        s.SHOW_SSL_CERT_DETAILS()
 
 def main():
     print(f"\n{PURPLE}{BOLD}[+] Launching MUDA!\n")    
@@ -48,7 +50,7 @@ def main():
     #VIRUS_TOTAL_ANALYSIS(uri)
     #WHOIS_ANALYSIS(uri.DOMAIN)
     #PHISHTANK_ANALYSIS(uri.URL)
-    GET_SSL_INFO(uri.DOMAIN)
+    GET_SSL_INFO(uri.PROTOCOL, uri.DOMAIN)
     
 if __name__=='__main__':
     SHOW_BANNER()
