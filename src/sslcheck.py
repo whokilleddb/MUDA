@@ -21,6 +21,8 @@ class SSL_INSPECTION:
     def __init__(self,DOMAIN):
         self.DOMAIN=DOMAIN
         self.CERT_DICT=self.GET_SSL_INFO()
+        self.SSL_VERSION=self.CERT_DICT['version']
+        self.SERIAL_NUMBER=self.CERT_DICT['serialNumber']
         
     def GET_SSL_INFO(self):
         ctx = ssl.create_default_context()
@@ -30,7 +32,7 @@ class SSL_INSPECTION:
         return cert
     
     def SHOW_SSL_CERT_DETAILS(self):
-        print(self.CERT_DICT)
+        #print(self.CERT_DICT)
         print(f"{PURPLE}[+] SSL Certificate Details:\n{NONE}")
         SUBJECT=self.CERT_DICT['subject']
         table=[]
@@ -44,8 +46,8 @@ class SSL_INSPECTION:
             table.append(issuer[0])
         SHOW_TABLE("{+] Issuer Information",table)
         
-        print(f"{YELLOW}[+] SSL Version: {CYAN}{self.CERT_DICT['version']}{NONE}\n")
-        print(f"{YELLOW}[+] Serial Number: {CYAN}{self.CERT_DICT['serialNumber']}{NONE}\n")
+        print(f"{YELLOW}[+] SSL Version: {CYAN}{self.SSL_VERSION}{NONE}\n")
+        print(f"{YELLOW}[+] Serial Number: {CYAN}{self.SERIAL_NUMBER}{NONE}\n")
         
         SHOW_TABLE("[+] Subject Alternate Name",self.CERT_DICT['subjectAltName'])
         
