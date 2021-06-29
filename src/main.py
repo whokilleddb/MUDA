@@ -47,9 +47,9 @@ def main():
     args = parser.parse_args()
     uri=URI(args.u,args.r)
     uri.SHOW_DOMAIN_INFO()
-    #VIRUS_TOTAL_ANALYSIS(uri)
-    #WHOIS_ANALYSIS(uri.DOMAIN)
-    #PHISHTANK_ANALYSIS(uri.URL)
+    VIRUS_TOTAL_ANALYSIS(uri)
+    WHOIS_ANALYSIS(uri.DOMAIN)
+    PHISHTANK_ANALYSIS(uri.URL)
     GET_SSL_INFO(uri.PROTOCOL, uri.DOMAIN)
     
 if __name__=='__main__':
