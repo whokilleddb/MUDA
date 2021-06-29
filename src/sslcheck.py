@@ -34,26 +34,29 @@ class SSL_INSPECTION:
     def SHOW_SSL_CERT_DETAILS(self):
         #print(self.CERT_DICT)
         print(f"{PURPLE}[+] SSL Certificate Details:\n{NONE}")
+        print(f"{YELLOW}[+] CA Issuers: {CYAN}{self.CERT_DICT['caIssuers'][0]}{NONE}")
+        print(f"{YELLOW}[+] SSL Version: {CYAN}{self.SSL_VERSION}{NONE}")
+        print(f"{YELLOW}[+] Serial Number: {CYAN}{self.SERIAL_NUMBER}{NONE}")
+        print(f"{YELLOW}[+] OCSP: {CYAN}{self.CERT_DICT['OCSP'][0]}{NONE}")
+        
+        if CHECK_KEY('crlDistributionPoints',self.CERT_DICT): 
+            print(f"{YELLOW}[+] CRL Distribution Points: {CYAN}{','.join(self.CERT_DICT['crlDistributionPoints'])}{NONE}\n")
+        
         SUBJECT=self.CERT_DICT['subject']
         table=[]
         for subject in reversed(SUBJECT) :
             table.append(subject[0])
-        SHOW_TABLE("{+] Subject",table)
+        SHOW_TABLE("\n[+] Subject",table)
         
         ISSUER=self.CERT_DICT['issuer']
         table=[]
         for issuer in ISSUER:
             table.append(issuer[0])
         SHOW_TABLE("{+] Issuer Information",table)
-        
-        print(f"{YELLOW}[+] SSL Version: {CYAN}{self.SSL_VERSION}{NONE}\n")
-        print(f"{YELLOW}[+] Serial Number: {CYAN}{self.SERIAL_NUMBER}{NONE}\n")
-        
+                
         SHOW_TABLE("[+] Subject Alternate Name",self.CERT_DICT['subjectAltName'])
         
-        print(f"{YELLOW}[+] OCSP: {CYAN}{self.CERT_DICT['OCSP'][0]}{NONE}\n")
         
-        print(f"{YELLOW}[+] CA Issuers: {CYAN}{self.CERT_DICT['caIssuers'][0]}{NONE}\n")
         
-        if CHECK_KEY('crlDistributionPoints',self.CERT_DICT): 
-            print(f"{YELLOW}[+] CRL Distribution Points: {CYAN}{','.join(self.CERT_DICT['crlDistributionPoints'])}{NONE}\n")
+        
+        

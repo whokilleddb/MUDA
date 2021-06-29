@@ -71,7 +71,7 @@ class VIRUS_TOTAL:
         table=[]
         for key in STATS.keys():
             table.append([key,str(STATS[key])])
-        SHOW_TABLE("[+] Stats For Your URL:",table)
+        SHOW_TABLE("[+] Stats For URL",table)
 
         
     def PRINT_VENDOR_STATS(self):
@@ -80,5 +80,5 @@ class VIRUS_TOTAL:
         for KEY in RESULTS.keys():
             VENDOR=RESULTS[KEY]
             table.append([VENDOR['engine_name'],VENDOR['category'],VENDOR['result'],VENDOR['method']])
-        SHOW_TABLE("[+] Engine Analysis:",table,['Engine','Category','Result','Method'])
+        SHOW_TABLE("[+] Engine Analysis",table,['Engine','Category','Result','Method'])
         
