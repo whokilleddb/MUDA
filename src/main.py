@@ -40,7 +40,7 @@ def GET_SSL_INFO(proto,domain):
         s.SHOW_SSL_CERT_DETAILS()
 
 def main():
-    print(f"\n{PURPLE}{BOLD}[+] Launching MUDA!\n")    
+    print(f"\n{PURPLE}{BOLD}[+] Launching MUDA!{NONE}\n")    
     parser = argparse.ArgumentParser(description="[+] Malicious URL Detector!")
     parser.add_argument('-u', metavar='URL', required=True, type=str, help="URL/URI to Inspect")
     parser.add_argument('-r', action='store_true', help="Follow Redirects")
