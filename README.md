@@ -6,6 +6,7 @@
 <h2>Configuring The Environment</h2>
 <p>In your <code>.env</code> file add the following lines:</p>
 <pre>VIRUS_TOTAL_KEY=your-api-key</pre>
+<pre>IPSTACK_KEY=your-api-key</pre>
 
 <h2>Module Information</h2>
 <p>Below I have tried to briefly explain what each module does:</p>
