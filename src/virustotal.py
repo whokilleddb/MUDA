@@ -13,19 +13,6 @@ from dotenv import load_dotenv
 load_dotenv()
 VIRUS_TOTAL_API_URL = "https://www.virustotal.com/api/v3/"
 
-NONE='\033[00m'
-BLACK='\033[01;30m'
-RED='\033[01;31m'
-GREEN='\033[01;32m'
-YELLOW='\033[01;33m'
-BLUE='\033[0;34m'
-PURPLE='\033[01;35m'
-CYAN='\033[01;36m'
-WHITE='\033[01;37m'
-BOLD='\033[1m'
-BLINK='\033[5m'
-UNDERLINE='\033[4m'
-
 class VIRUS_TOTAL:
     def __init__(self, URI ):
         self.API_KEY=os.getenv('VIRUS_TOTAL_KEY')           # Store API KEY

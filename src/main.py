@@ -36,11 +36,9 @@ def WHOIS_ANALYSIS(domain):
 def PHISHTANK_ANALYSIS(url):
     pt=PHISHTANK(url)
     pt.SHOW_DATA()
-    if pt.IN_DB:
-        if pt.IS_PHISH:
-            RESULTS['PT']=1
-    else:
-        RESULTS['PT']=0
+    if pt.IS_PHISH:
+        print(f"{RED}[+] GIVEN URI IS MALICIOUS{NONE}")
+        sys.exit(-2)
 
 def GET_SSL_INFO(proto,domain):
     if proto.lower()=='https':
@@ -61,10 +59,10 @@ def GET_FREQ(URI,PROTOCOL,FILENAME):
     total=float(fq.PROBABILITY[1])
     avg=float(fq.PROBABILITY[0])
     if total> avg:
-        RESULTS['ET']=1
+        print(f"{RED}[+] GIVEN URI IS MALICIOUS{NONE}")
+        sys.exit(-3)
     else :
         RESULTS['ET']=round((total/avg),4)
-
 
 def main():
     print(f"\n{PURPLE}{BOLD}[+] Launching MUDA!{NONE}\n")    
@@ -77,16 +75,15 @@ def main():
     uri=URI(args.u,args.r)
     uri.SHOW_DOMAIN_INFO()
     
-    print(uri.HAS_DOWNLOAD)
     if uri.HAS_DOWNLOAD:
         RESULTS['DW']=0
     else:
         RESULTS['DW']=1
         
+    PHISHTANK_ANALYSIS(uri.URI)
     GET_FREQ(uri.URI,uri.PROTOCOL,args.f)
     VIRUS_TOTAL_ANALYSIS(uri)
     WHOIS_ANALYSIS(uri.DOMAIN)
-    PHISHTANK_ANALYSIS(uri.URL)
     GET_SSL_INFO(uri.PROTOCOL, uri.DOMAIN)
     GET_GEOTAG(uri.DOMAIN_IP)
     

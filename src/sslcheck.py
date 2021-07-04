@@ -52,7 +52,7 @@ class SSL_INSPECTION:
         table=[]
         for issuer in ISSUER:
             table.append(issuer[0])
-        SHOW_TABLE("{+] Issuer Information",table)
+        SHOW_TABLE("[+] Issuer Information",table)
                 
         SHOW_TABLE("[+] Subject Alternate Name",self.CERT_DICT['subjectAltName'])
         

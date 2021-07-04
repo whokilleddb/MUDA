@@ -245,11 +245,11 @@ class FREQ:
         self.FC.ignore_case=False
         #self.SHOW_PROBABILITY=self.FC.probability(self.STR)
         #self.FC.save(self.FREQ_FILE)
-        return  self.FC.probability(self.STR)
+        return self.FC.probability(self.STR)
          
             
     def SHOW_PROBABILITY(self):
         table=[["AVERAGE",self.PROBABILITY[0]],["Total",self.PROBABILITY[1]]]
-        SHOW_TABLE("Probability",table)
+        SHOW_TABLE("[+] Probability",table)
         #print(self.PROBABILITY)
         
