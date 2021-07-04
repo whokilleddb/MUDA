@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import argparse
+import signal
 from virustotal import *
 from check_uri import *
 from whoisinfo import *
@@ -42,6 +43,7 @@ def GET_SSL_INFO(proto,domain):
 
 def GET_GEOTAG(ip):
     geo=GEO_IP(ip)
+    geo.SHOW_DATA()
 
 def main():
     print(f"\n{PURPLE}{BOLD}[+] Launching MUDA!{NONE}\n")    
@@ -51,12 +53,13 @@ def main():
     args = parser.parse_args()
     uri=URI(args.u,args.r)
     uri.SHOW_DOMAIN_INFO()
-    #VIRUS_TOTAL_ANALYSIS(uri)
-    #WHOIS_ANALYSIS(uri.DOMAIN)
-    #PHISHTANK_ANALYSIS(uri.URL)
-    #GET_SSL_INFO(uri.PROTOCOL, uri.DOMAIN)
+    VIRUS_TOTAL_ANALYSIS(uri)
+    WHOIS_ANALYSIS(uri.DOMAIN)
+    PHISHTANK_ANALYSIS(uri.URL)
+    GET_SSL_INFO(uri.PROTOCOL, uri.DOMAIN)
     GET_GEOTAG(uri.DOMAIN_IP)
     
 if __name__=='__main__':
+    signal.signal(signal.SIGINT, EXIT_FUNC)
     SHOW_BANNER()
     main()
