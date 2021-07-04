@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 from tabulate import tabulate
+import sys
 
 # Colorschemes
 NONE='\033[00m'
@@ -48,3 +49,7 @@ def CHECK_KEY(KEY,DICT):
         return True
     else :
         return False
+    
+def EXIT_FUNC(sig, frame):
+    print(f"\n{RED}[-] Exiting!{NONE}")
+    sys.exit(-1)

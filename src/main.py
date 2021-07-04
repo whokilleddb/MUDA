@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 import argparse
+import signal
 from virustotal import *
 from check_uri import *
 from whoisinfo import *
 from phishtank import *
 from sslcheck import *
+from geotag import *
 
 # Colorschemes
 NONE='\033[00m'
@@ -39,6 +41,10 @@ def GET_SSL_INFO(proto,domain):
         s=SSL_INSPECTION(domain)
         s.SHOW_SSL_CERT_DETAILS()
 
+def GET_GEOTAG(ip):
+    geo=GEO_IP(ip)
+    geo.SHOW_DATA()
+
 def main():
     print(f"\n{PURPLE}{BOLD}[+] Launching MUDA!{NONE}\n")    
     parser = argparse.ArgumentParser(description="[+] Malicious URL Detector!")
@@ -51,7 +57,9 @@ def main():
     WHOIS_ANALYSIS(uri.DOMAIN)
     PHISHTANK_ANALYSIS(uri.URL)
     GET_SSL_INFO(uri.PROTOCOL, uri.DOMAIN)
+    GET_GEOTAG(uri.DOMAIN_IP)
     
 if __name__=='__main__':
+    signal.signal(signal.SIGINT, EXIT_FUNC)
     SHOW_BANNER()
     main()
