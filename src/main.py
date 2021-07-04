@@ -36,11 +36,9 @@ def WHOIS_ANALYSIS(domain):
 def PHISHTANK_ANALYSIS(url):
     pt=PHISHTANK(url)
     pt.SHOW_DATA()
-    if pt.IN_DB:
-        if pt.IS_PHISH:
-            print(f"{RED}[+] GIVEN URI IS MALICIOUS{NONE}")
-            sys.exit(-2)
-
+    if pt.IS_PHISH:
+        print(f"{RED}[+] GIVEN URI IS MALICIOUS{NONE}")
+        sys.exit(-2)
 
 def GET_SSL_INFO(proto,domain):
     if proto.lower()=='https':
@@ -61,7 +59,8 @@ def GET_FREQ(URI,PROTOCOL,FILENAME):
     total=float(fq.PROBABILITY[1])
     avg=float(fq.PROBABILITY[0])
     if total> avg:
-        RESULTS['ET']=1
+        print(f"{RED}[+] GIVEN URI IS MALICIOUS{NONE}")
+        sys.exit(-3)
     else :
         RESULTS['ET']=round((total/avg),4)
 

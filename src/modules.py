@@ -66,17 +66,14 @@ def CALC_RESULT(RESULTS):
     
     SHOW_TABLE("Scores",table)
 
-    if RESULTS['ET']==1:
+    score=0
+    counter=len(RESULTS)
+    for key in RESULTS.keys():
+        score=score+RESULTS[key]
+    print(f"{CYAN}[+] Final Scores: {PURPLE}{score}/{counter} = {round((score/counter),4)}{NONE}")
+    if score>(0.65*counter):
+        print(f"{GREEN}[+] THE GIVEN LINK APPEARS TO BE SAFE{NONE}")
+    elif score>(0.4*counter):
+        print(f"{YELLOW}[+] THE GIVEN LINK MIGHT BE MALICIOUS{NONE}")
+    else :
         print(f"{RED}[+] GIVEN URI IS MALICIOUS{NONE}")
-    else:
-        score=0
-        counter=len(RESULTS)
-        for key in RESULTS.keys():
-            score=score+RESULTS[key]
-        print(f"{CYAN}[+] Final Scores: {PURPLE}{score}/{counter} = {round((score/counter),4)}{NONE}")
-        if score>(0.65*counter):
-            print(f"{GREEN}[+] THE GIVEN LINK APPEARS TO BE SAFE{NONE}")
-        elif score>(0.3*counter):
-            print(f"{YELLOW}[+] THE GIVEN LINK MIGHT BE MALICIOUS{NONE}")
-        else :
-            print(f"{RED}[+] GIVEN URI IS MALICIOUS{NONE}")
