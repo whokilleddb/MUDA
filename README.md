@@ -19,5 +19,12 @@ IPSTACK_KEY=your-api-key</pre>
   <li>phishtank.py - Defines a class <code>PHISHTANK</code> to store the results of <a href='http://phishtank.org/'>PhishTank</a> Analysis</li>
   <li>sslcheck.py - Defines a class <code>SSL_INSPECTION</code> to contain information about the target website's SSL Certificate(when ever valid)</li>
   <li>geotag.py - Defines a class <code>GEO_IP</code> to store location information by leveraging <a href="https://ipstack.com/">IPStack API</a></li>
+  <li>freq.py - Get Entropy Of URI strings using<a href="https://github.com/MarkBaggett/freq">Mark Baggett's Freq Code</a></li>
 </ul>
   
+<h2>To-Do's</h2>
+<ul>
+  <li>ERROR HANDLING</li>
+  <li>USE THREADS!</li>
+  <li>REFACTOR !!</li>
+</ul>

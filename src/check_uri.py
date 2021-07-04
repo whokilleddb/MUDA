@@ -64,7 +64,10 @@ class URI:
                 self.DOMAIN=self.DOMAIN+ext+'.'
         self.DOMAIN=self.DOMAIN[:-1]                       # Get Domain Name from URI
         self.URL=self.PROTOCOL+"://"+self.DOMAIN           # Get URL From URI
-        self.DOMAIN_IP=socket.gethostbyname(self.DOMAIN)   # Getting IP Associated With Domain Name
+        try :
+            self.DOMAIN_IP=socket.gethostbyname(self.DOMAIN)   # Getting IP Associated With Domain Name
+        except Exception as e :
+            EXIT_ERROR(e,-2)
     
     # Get Count Of Internal And External Links
     def GET_LINKS(self):

@@ -7,6 +7,7 @@ from whoisinfo import *
 from phishtank import *
 from sslcheck import *
 from geotag import *
+from freq import *
 
 # Colorschemes
 NONE='\033[00m'
@@ -45,20 +46,28 @@ def GET_GEOTAG(ip):
     geo=GEO_IP(ip)
     geo.SHOW_DATA()
 
+def GET_FREQ(URI,PROTOCOL,FILENAME):
+    string=URI.replace(PROTOCOL,'').replace('/','').replace(':','')
+    fq=FREQ(FILENAME,string)
+    fq.SHOW_PROBABILITY()
+
 def main():
     print(f"\n{PURPLE}{BOLD}[+] Launching MUDA!{NONE}\n")    
     parser = argparse.ArgumentParser(description="[+] Malicious URL Detector!")
     parser.add_argument('-u', metavar='URL', required=True, type=str, help="URL/URI to Inspect")
     parser.add_argument('-r', action='store_true', help="Follow Redirects")
+    parser.add_argument('-f', metavar='Frequency File', required=False, type=str,default="freq.txt", nargs='?', const="freq.txt", help="Frequency File")
     args = parser.parse_args()
+    
     uri=URI(args.u,args.r)
     uri.SHOW_DOMAIN_INFO()
+    GET_FREQ(uri.URI,uri.PROTOCOL,args.f)
     VIRUS_TOTAL_ANALYSIS(uri)
     WHOIS_ANALYSIS(uri.DOMAIN)
     PHISHTANK_ANALYSIS(uri.URL)
     GET_SSL_INFO(uri.PROTOCOL, uri.DOMAIN)
     GET_GEOTAG(uri.DOMAIN_IP)
-    
+        
 if __name__=='__main__':
     signal.signal(signal.SIGINT, EXIT_FUNC)
     SHOW_BANNER()
