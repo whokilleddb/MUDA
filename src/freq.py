@@ -174,7 +174,7 @@ class FreqCounter(dict):
         else:
             total_word_probability = totl2/totl1 * 100
         if self.verbose: print(GREEN+"[+] Total Word Probability: {0}/{1} = {2}\n".format(totl2, totl1, total_word_probability)+NONE)
-        return round(average_probability,4),round(total_word_probability,4)
+        return average_probability,total_word_probability
 
     def _probability(self,twoletters):
         if self.ignore_case and (self[twoletters[0]].count == 0 and self[twoletters[0].swapcase()].count == 0):
@@ -219,9 +219,6 @@ class FreqCounter(dict):
 
     def printtable(self):
         pprint(self.toJSON())
-
-
-
 
 class FREQ:
     def __init__(self, filename,string):

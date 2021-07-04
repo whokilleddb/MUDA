@@ -58,3 +58,25 @@ def EXIT_ERROR(ERROR,RET=-1):
     print("{RED}[-] Exception Occured As: {ERROR}")
     print(f"[-] Exiting With Status Code: {RET}{NONE}")
     sys.exit(RET)
+
+def CALC_RESULT(RESULTS):
+    table=list()
+    for key in RESULTS.keys():
+        table.append([key,RESULTS[key]])
+    
+    SHOW_TABLE("Scores",table)
+
+    if RESULTS['PT']==1 or RESULTS['ET']==1:
+        print(f"{RED}[+] GIVEN URI IS MALICIOUS{NONE}")
+    else:
+        score=0
+        counter=len(RESULTS)
+        for key in RESULTS.keys():
+            score=score+RESULTS[key]
+        print(f"{CYAN}[+] Final Scores: {PURPLE}{score}/{counter} = {round((score/counter),4)}{NONE}")
+        if score>(0.65*counter):
+            print(f"{GREEN}[+] THE GIVEN LINK APPEARS TO BE SAFE{NONE}")
+        elif score>(0.3*counter):
+            print(f"{YELLOW}[+] THE GIVEN LINK MIGHT BE MALICIOUS{NONE}")
+        else :
+            print(f"{RED}[+] GIVEN URI IS MALICIOUS{NONE}")
