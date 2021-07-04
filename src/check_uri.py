@@ -39,6 +39,7 @@ class URI:
         self.EXTERNAL_COUNT=0
         self.GET_URI_INFO()
         self.GET_LINKS()
+        self.HAS_DOWNLOAD=self.CHECK_DOWNLOAD()
 
     # Check if the the provided URI is valid
     def VALIDATE_URL(self):
@@ -69,6 +70,17 @@ class URI:
         except Exception as e :
             EXIT_ERROR(e,-2)
     
+    # Check If URL has any downloadables
+    def CHECK_DOWNLOAD(self):
+        flag = False
+        headers=requests.head(self.URI).headers
+        if 'attachment' in headers.get('Content-Disposition', ''):
+            flag=True
+        if 'application' in self.REQUEST.headers['Content-type']:
+            flag=True
+        return flag
+    
+    
     # Get Count Of Internal And External Links
     def GET_LINKS(self):
         soup=BeautifulSoup(self.REQUEST.text,'html.parser')
@@ -98,5 +110,5 @@ class URI:
           
     # Print Domain Information
     def SHOW_DOMAIN_INFO(self):
-        table=[['PROTOCOL',self.PROTOCOL],["DOMAIN IP",self.DOMAIN_IP],["SIZE OF PAGE",self.SIZE],["NUMBER OF LINKS",len(self.URL_SET)],["INTERNAL LINKS",self.INTERNAL_COUNT],["EXTERNAL LINKS",self.EXTERNAL_COUNT],["DOMAIN",self.DOMAIN],["URI",self.URI],["URL",self.URL]]
+        table=[['PROTOCOL',self.PROTOCOL],["DOMAIN IP",self.DOMAIN_IP],["HAS DOWNLOADABLE",self.HAS_DOWNLOAD],["SIZE OF PAGE",self.SIZE],["NUMBER OF LINKS",len(self.URL_SET)],["INTERNAL LINKS",self.INTERNAL_COUNT],["EXTERNAL LINKS",self.EXTERNAL_COUNT],["DOMAIN",self.DOMAIN],["URI",self.URI],["URL",self.URL]]
         SHOW_TABLE("[+] URI Info",table)
