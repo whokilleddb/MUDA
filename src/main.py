@@ -76,7 +76,6 @@ def main():
     uri=URI(args.u,args.r)
     uri.SHOW_DOMAIN_INFO()
     
-    print(uri.HAS_DOWNLOAD)
     if uri.HAS_DOWNLOAD:
         RESULTS['DW']=0
     else:
