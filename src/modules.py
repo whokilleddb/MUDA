@@ -53,3 +53,8 @@ def CHECK_KEY(KEY,DICT):
 def EXIT_FUNC(sig, frame):
     print(f"\n{RED}[-] Exiting!{NONE}")
     sys.exit(-1)
+    
+def EXIT_ERROR(ERROR,RET=-1):
+    print("{RED}[-] Exception Occured As: {ERROR}")
+    print(f"[-] Exiting With Status Code: {RET}{NONE}")
+    sys.exit(RET)
