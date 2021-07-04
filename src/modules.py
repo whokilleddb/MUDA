@@ -66,7 +66,7 @@ def CALC_RESULT(RESULTS):
     
     SHOW_TABLE("Scores",table)
 
-    if RESULTS['PT']==1 or RESULTS['ET']==1:
+    if RESULTS['ET']==1:
         print(f"{RED}[+] GIVEN URI IS MALICIOUS{NONE}")
     else:
         score=0
